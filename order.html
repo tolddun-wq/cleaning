@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Оформить наряд — Чистовик</title>
+<meta name="description" content="Оформление уборки в четыре шага: расчёт, время, данные, подтверждение.">
+<meta name="theme-color" content="#ECF0EA">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Оформить наряд — Чистовик">
+<meta property="og:description" content="Оформление уборки в четыре шага. Демо-сайт клининга для портфолио.">
+<meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;700&family=Onest:wght@400;500;600&family=Martian+Mono:wdth,wght@75..112.5,300..500&family=Bad+Script&display=swap">
+<link rel="stylesheet" href="css/site.css?v=6">
+</head>
+<body>
+<a class="skip" href="#steps">К шагам заказа</a>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="index.html" aria-label="Чистовик — на главную">
+      <svg viewBox="0 0 34 34" width="34" height="34" aria-hidden="true"><rect class="logo-box" x="2" y="7" width="25" height="25" fill="none" stroke="#1D2420" stroke-width="2"/><path class="logo-tick" d="M8 19.5 14 26 31 3" fill="none" stroke="#1F2E6E" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span><span class="logo__word">Чистовик</span><span class="logo__sub">уборка по наряду</span></span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="index.html#naryad">Наряд и&nbsp;цена</a>
+      <a href="index.html#garantii">Гарантии</a>
+      <a href="index.html#oborot">Что входит</a>
+      <a href="index.html#sostav">Состав средств</a>
+      <a href="index.html#den">Как проходит</a>
+      <div class="nav__m">
+        <a class="btn btn--pen" href="order.html">Оформить наряд</a>
+        <a href="tel:+78310000000" data-demo="Звонок не пройдёт: «Чистовик» придуман для портфолио."><b class="num">+7&nbsp;831&nbsp;000-00-00</b></a>
+        <span>ежедневно 8:00–21:00 · ул.&nbsp;Белинского, 61</span>
+      </div>
+    </nav>
+    <a class="top__tel" href="tel:+78310000000" data-demo="Звонок не пройдёт: «Чистовик» придуман для портфолио.">
+      <b>+7&nbsp;831&nbsp;000-00-00</b><small>ежедневно 8:00–21:00</small>
+    </a>
+    <button class="burger" type="button" data-burger aria-expanded="false" aria-label="Меню"><span></span></button>
+  </div>
+</header>
+
+<main class="wrap order" id="main">
+  <div class="order-head">
+    <div>
+      <p class="kicker">Наряд № <span class="pen num" id="finalNum"></span></p>
+      <h1>Оформление наряда</h1>
+    </div>
+    <a class="btn btn--line" href="index.html#naryad">← Вернуться к бланку</a>
+  </div>
+
+  <ol class="steps" id="steps" aria-label="Шаги заказа"></ol>
+
+  <div class="sheet">
+    <div>
+      <section class="pane" data-step="1" aria-labelledby="h-1">
+        <h2 class="pane__h" id="h-1">Проверьте расчёт</h2>
+        <p class="pane__lead">Здесь тот&nbsp;же бланк, что на&nbsp;главной. Поменяйте что угодно — цена на&nbsp;корешке пересчитается.</p>
+        <form class="blank" id="blank" data-no-when novalidate></form>
+        <div class="pane__nav">
+          <a class="btn btn--line" href="index.html">На&nbsp;главную</a>
+          <button class="btn btn--pen" type="button" data-next>Дальше: время →</button>
+        </div>
+      </section>
+
+      <section class="pane" data-step="2" aria-labelledby="h-2" hidden>
+        <h2 class="pane__h" id="h-2">Когда приехать</h2>
+        <p class="pane__lead">Две недели вперёд. В&nbsp;каждой клетке — сколько свободных окон осталось. Окно, после которого не&nbsp;успеем закончить до&nbsp;21:00, не&nbsp;предлагаем.</p>
+        <table class="cal" id="cal"></table>
+        <h3 class="small" id="slotsHead" style="font:600 17px var(--f-body);color:var(--ink);margin:0 0 10px"></h3>
+        <ul class="slotlist" id="slotlist" role="radiogroup" aria-labelledby="slotsHead"></ul>
+        <p class="err" id="timeErr" role="alert"></p>
+        <div class="pane__nav">
+          <button class="btn btn--line" type="button" data-prev>← Расчёт</button>
+          <button class="btn btn--pen" type="button" data-next>Дальше: данные →</button>
+        </div>
+      </section>
+
+      <section class="pane" data-step="3" aria-labelledby="h-3" hidden>
+        <h2 class="pane__h" id="h-3">Куда ехать и&nbsp;кому звонить</h2>
+        <p class="pane__lead">Накануне в&nbsp;19:00 бригадир позвонит и&nbsp;сверит наряд. Обязательные графы отмечены звёздочкой.</p>
+        <form class="fields" id="client" novalidate autocomplete="on">
+          <label class="fld fld--3"><span>Как к&nbsp;вам обращаться <i>*</i></span>
+            <input name="name" autocomplete="given-name" aria-describedby="err-name"><span class="err" id="err-name"></span></label>
+          <label class="fld fld--3"><span>Телефон <i>*</i></span>
+            <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" aria-describedby="err-phone"><span class="err" id="err-phone"></span></label>
+          <div class="fld-row"><span>Город</span>
+            <label class="circ"><input type="radio" name="city" value="nn" checked><span>Нижний Новгород</span></label>
+            <label class="circ"><input type="radio" name="city" value="kstovo"><span>Кстово</span></label>
+          </div>
+          <label class="fld"><span>Улица и&nbsp;дом <i>*</i></span>
+            <input name="street" autocomplete="street-address" placeholder="например, ул. Ванеева, 34" aria-describedby="err-street"><span class="err" id="err-street"></span></label>
+          <label class="fld fld--1"><span>Квартира</span><input name="flat" inputmode="numeric"></label>
+          <label class="fld fld--1"><span>Подъезд</span><input name="entrance" inputmode="numeric"></label>
+          <label class="fld fld--1"><span>Этаж</span><input name="floor" inputmode="numeric"></label>
+          <label class="fld fld--3"><span>Код домофона</span><input name="intercom"></label>
+          <div class="fld-row"><span>Как попадём в&nbsp;квартиру</span>
+            <label class="circ"><input type="radio" name="keys" value="home" checked><span>встречу дома</span></label>
+            <label class="circ"><input type="radio" name="keys" value="office"><span>оставлю ключи в&nbsp;офисе</span></label>
+            <label class="circ"><input type="radio" name="keys" value="concierge"><span>ключи у&nbsp;консьержа</span></label>
+          </div>
+          <label class="fld"><span>Комментарий для бригады</span><textarea name="comment" rows="3" placeholder="Где парковаться, что не трогать, где лежит пылесос"></textarea></label>
+          <p class="fld-note">Сайт пробный: данные остаются только в&nbsp;вашем браузере и&nbsp;никуда не&nbsp;отправляются.</p>
+        </form>
+        <div class="pane__nav">
+          <button class="btn btn--line" type="button" data-prev>← Время</button>
+          <button class="btn btn--pen" type="button" data-next>Дальше: проверить наряд →</button>
+        </div>
+      </section>
+
+      <section class="pane" data-step="4" aria-labelledby="h-4" hidden>
+        <h2 class="pane__h" id="h-4">Проверьте наряд</h2>
+        <p class="pane__lead">Так он будет выглядеть у&nbsp;бригадира. Если всё верно — подтверждайте.</p>
+        <div class="final" id="final"></div>
+        <div class="pane__nav">
+          <button class="btn btn--line" type="button" data-prev>← Данные</button>
+          <span style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn--line" type="button" data-print>Распечатать</button>
+            <button class="btn btn--pen" type="button" data-demo="Заказ не уйдёт: «Чистовик» придуман для портфолио, бригада не приедет.">Подтвердить заказ</button>
+          </span>
+        </div>
+      </section>
+    </div>
+    <aside class="stub" aria-label="Корешок: расчёт цены" aria-live="polite"><div class="stub__in" id="stub"></div></aside>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__fine" style="margin-top:0;border-top:0;padding-top:0">
+      <span>ООО «Чистовик», Нижний Новгород, ул.&nbsp;Белинского, 61, офис&nbsp;4 · ежедневно <span style="white-space:nowrap">8:00–21:00</span></span>
+      <span><a href="usloviya.html">Условия и&nbsp;договор</a> · Демо-сайт для портфолио: компания вымышленная, заказы не&nbsp;принимаются.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js?v=6"></script>
+<script src="js/engine.js?v=6"></script>
+<script src="js/blank.js?v=6"></script>
+<script src="js/ui.js?v=6"></script>
+<script src="js/order.js?v=6"></script>
+</body>
+</html>
