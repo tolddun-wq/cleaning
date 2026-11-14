@@ -33,9 +33,13 @@
 
   /* ---------- меню на телефоне ---------- */
   const burger = document.querySelector('[data-burger]');
-  if (burger) burger.addEventListener('click', () => {
-    const open = document.body.classList.toggle('nav-open');
-    burger.setAttribute('aria-expanded', String(open));
-  });
-  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('nav-open')));
+  const setNav = open => {
+    document.body.classList.toggle('nav-open', open);
+    if (burger) { burger.setAttribute('aria-expanded', String(open)); burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Меню'); }
+  };
+  if (burger) burger.addEventListener('click', () => setNav(!document.body.classList.contains('nav-open')));
+  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => setNav(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('nav-open')) { setNav(false); burger.focus(); } });
+  /* при печати раскрываем все свёрнутые группы */
+  window.addEventListener('beforeprint', () => document.querySelectorAll('details').forEach(d => { d.open = true; }));
 })();

@@ -215,12 +215,61 @@
       <details><summary>Пункты наряда — ${r.count}${NB}${D.plural(r.count, 'пункт', 'пункта', 'пунктов')} <span>развернуть</span></summary>
         <div class="rooms">${B.checklistHTML(s, false)}</div></details>
       <div class="sign">
-        <div><span>${esc((c.name || '').split(' ')[0])}</span></div>
-        <div></div>
+        <div class="sign__c"><div class="sign__l"><span>${esc((c.name || '').split(' ')[0])}</span></div><p>Подпись заказчика при заказе</p></div>
+        <div class="sign__c"><div class="sign__l"></div><p>Подпись бригадира при приёмке</p></div>
       </div>
-      <div class="sign" style="margin-top:0"><p>Подпись заказчика при заказе</p><p>Подпись бригадира при приёмке</p></div>
-      <p class="pay">Оплата <b>после приёмки</b>: картой, переводом или наличными бригадиру. Предоплаты нет. Отменить или перенести можно бесплатно до${NB}18:00 накануне.</p>`;
+      <p class="pay">Оплата <b>после приёмки</b>: картой, переводом или наличными бригадиру. Предоплаты нет. Отменить или перенести можно бесплатно за${NB}12${NB}часов до${NB}приезда.</p>`;
     $('#finalNum').textContent = s.number;
+  }
+
+  /* ---------- шаг 1: сводка ---------- */
+  function drawSummary(s) {
+    const el = $('#sum1'); if (!el) return;
+    const r = CH.calc(s);
+    const house = s.house.map(id => D.HOUSE.find(h => h.id === id).name.toLowerCase()).join(', ');
+    const extras = D.EXTRAS.filter(x => s.extras[x.id] && !CH.extraIncluded(x, s)).map(x => x.name.toLowerCase() + (x.count ? ' ×' + s.extras[x.id] : '')).join(', ');
+    const preset = s.mode === 'rooms' ? (D.PRESETS.find(p => p.id === s.preset) || {}).name + ', ' : '';
+    const rows = [
+      ['Вид уборки', r.type.name],
+      ['Помещение', preset + Math.round(s.area) + NB + 'м²' + (s.baths > 1 ? ', санузлов: ' + s.baths : '')],
+      ['Кто дома', house || 'не указано'],
+      ['Средства', D.CHEM_MODES.find(m => m.id === s.chem).short],
+      ['Дополнительно', extras || 'нет'],
+      ['Как часто', D.FREQ.find(x => x.id === s.freq).name]
+    ];
+    el.innerHTML = `<dl class="final__grid">${rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
+  }
+  B.on(drawSummary);
+  const editBtn = $('#editBlank');
+  if (editBtn) editBtn.addEventListener('click', () => {
+    const f = $('#blank'); const open = f.hidden;
+    f.hidden = !open; editBtn.setAttribute('aria-expanded', String(open));
+    editBtn.textContent = open ? 'Свернуть бланк' : 'Изменить в бланке';
+    if (open) f.querySelector('input').focus({ preventScroll: true });
+  });
+
+  /* ---------- после подтверждения: наряд принят ---------- */
+  function confirmOrder() {
+    const s = B.state, c = s.client || {};
+    const { hours } = CH.workload(s);
+    const b = brigade(s.date, s.slot);
+    const prev = new Date(CH.parseIso(s.date)); prev.setDate(prev.getDate() - 1);
+    $('#done').innerHTML = `
+      <span class="stamp stamp--big" aria-hidden="true">принят</span>
+      <h2 class="pane__h">Наряд принят${c.name ? ', ' + esc(c.name.split(' ')[0]) : ''}</h2>
+      <p class="pane__lead">Бригада записана на ${CH.dateLong(s.date)}, ${s.slot}–${B.endTime(s.slot, hours)}. Вот что будет дальше.</p>
+      <ol class="done__steps">
+        <li><time>сейчас</time><b>SMS с номером наряда</b><p>Придёт на ${esc(c.phone || 'ваш телефон')}. В нём ссылка на этот наряд.</p></li>
+        <li><time>${CH.dateLong(CH.iso(prev))}, 19:00</time><b>Звонит бригадир</b><p>${esc(b.name)} сверит наряд, спросит про домофон и парковку.</p></li>
+        <li><time>${CH.dateLong(s.date)}, ${s.slot}</time><b>Приезжает бригада</b><p>С пылесосом, парогенератором и коробкой средств.</p></li>
+        <li><time>после уборки</time><b>Приёмка и оплата</b><p>Проходите по пунктам, подписываете и платите. Замечание — переделаем за 24 часа.</p></li>
+      </ol>
+      <p class="pane__nav"><a class="btn btn--line" href="index.html">На главную</a><a class="btn btn--pen" href="usloviya.html">Условия и договор</a></p>`;
+    panes.forEach(p => { p.hidden = true; });
+    $('#done').hidden = false;
+    $('#steps').innerHTML = STEPS.map((name, i) => `<li><span class="done" aria-disabled="true"><b>${i + 1}</b>${name}</span></li>`).join('');
+    $('#steps').scrollIntoView({ block: 'start' });
+    window.showDemo('Это наряд из пробного сайта: SMS не придёт, бригада не приедет. «Чистовик» придуман для портфолио.');
   }
 
   /* ---------- кнопки ---------- */
@@ -234,6 +283,7 @@
     const p = e.target.closest('[data-prev]');
     if (p) go(step - 1, true);
     if (e.target.closest('[data-print]')) window.print();
+    if (e.target.closest('[data-confirm]')) confirmOrder();
   });
 
   B.mountStub($('#stub'), { actions: false });

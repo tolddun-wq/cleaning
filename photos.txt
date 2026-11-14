@@ -1,5 +1,8 @@
 Фото сайта «Чистовик» — Unsplash (бесплатная лицензия Unsplash, без указания автора).
-Скачаны в img/photo/ (sostav-limon, mojka, flakony, podokonnik, sanuzel, tryapki), сайт не зависит от Unsplash.
+Скачаны в img/photo/ (brigadir, sostav-limon, mojka, flakony, podokonnik, sanuzel, tryapki), сайт не зависит от Unsplash.
+
+Главная, первый экран (фото для примера):
+https://images.unsplash.com/photo-1758273705723-26ef454252ce  → img/photo/brigadir.jpg
 
 Главная, «Состав»:
 https://unsplash.com/photos/yellow-lemon-fruit-beside-clear-glass-bottle-n5qirFAe6rQ   (photo-1583907659441-addbe699e921)
@@ -9,7 +12,7 @@ https://unsplash.com/photos/yellow-lemon-fruit-beside-clear-glass-bottle-n5qirFA
 2 Флаконы    https://unsplash.com/photos/two-brown-spray-bottles-on-brown-table-uooMllXe6gE   (photo-1528740561666-dc2479dc08ab)
 3 Подоконник https://unsplash.com/photos/yellow-sponge-on-a-windowsill-near-window-h9Go51Cd_ms   (photo-1761058580231-97c253947fb0)
 4 Санузел    https://unsplash.com/photos/bathroom-with-pedestal-sink-and-plants-U7PitHRnTNU   (photo-1552321554-5fefe8c9ef14)
-5 Тряпки     https://unsplash.com/photos/stack-of-clean-white-towels-on-a-surface-qPNgpYUCW0c   (photo-1760722974657-f64bce2f9cc5)
+5 Тряпки     https://images.unsplash.com/photo-1705248382836-3618e25706d0
 
 Запас (для страниц «Что входит» и заказа):
 https://unsplash.com/photos/kitchen-with-white-cabinets-and-tiles-z3QZ6gjGRt4   (photo-1556912173-3bb406ef7e77)

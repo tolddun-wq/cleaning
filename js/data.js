@@ -1,5 +1,5 @@
 /* «Чистовик» — все цены, пункты наряда и состав средств в одном месте.
-   Цены и пункты используются и на главной, и в заказе, и на страницах «Что входит» и «Состав». */
+   Отсюда берут данные главная (бланк, чек-лист, состав) и страница заказа. */
 window.CH_DATA = (function () {
   const ALL = ['support', 'general', 'move', 'repair'];
 
@@ -39,7 +39,7 @@ window.CH_DATA = (function () {
       task: n => `Вымыть окна с двух сторон: ${n} ${plural(n, 'створка', 'створки', 'створок')}, рамы, отливы изнутри`, chem: 'glass' },
     { id: 'balcony', name: 'Балкон или лоджия', price: 1200, min: 45, room: 'balcony',
       task: 'Балкон: пол, подоконник, рамы изнутри, вынести мусор', chem: 'floor' },
-    { id: 'cabinets', name: 'Шкафы и комоды изнутри', price: 300, unit: 'шт.', count: true, max: 15, min: 15, room: 'rooms', includedIn: ['move'],
+    { id: 'cabinets', name: 'Шкафы и комоды в комнатах', hint: 'кухонные входят в генеральную', price: 300, unit: 'шт.', count: true, max: 15, min: 15, room: 'rooms', includedIn: ['move'],
       task: n => `Шкафы и комоды изнутри: ${n} шт., вынуть и вернуть вещи на место`, chem: 'surfaces' },
     { id: 'chandelier', name: 'Люстры и плафоны', price: 450, unit: 'шт.', count: true, max: 10, min: 20, room: 'rooms',
       task: n => `Люстры и плафоны: ${n} шт., снять, вымыть, вернуть`, chem: 'glass' },
@@ -105,7 +105,7 @@ window.CH_DATA = (function () {
     ],
     rooms: [
       { x: 'Пыль с открытых поверхностей и техники', t: ALL, chem: 'surfaces' },
-      { x: 'Зеркала и стекла в мебели', t: ALL, chem: 'glass' },
+      { x: 'Зеркала и стёкла в мебели', t: ALL, chem: 'glass' },
       { x: 'Подоконники', t: ALL, chem: 'surfaces' },
       { x: 'Пропылесосить ковры и мягкую мебель', t: ['support', 'general'], chem: null },
       { x: 'Заправить постель, сложить пледы', t: ['support'], chem: null },

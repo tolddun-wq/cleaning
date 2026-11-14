@@ -14,10 +14,11 @@
 <meta property="og:url" content="https://cleaning-ten-sigma.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;700&family=Onest:wght@400;500;600&family=Martian+Mono:wdth,wght@75..112.5,300..500&family=Bad+Script&display=swap">
-<link rel="stylesheet" href="css/site.css?v=7">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/ibm-plex-sans-condensed-700-cyrillic-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/onest-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=9">
+<link rel="stylesheet" href="css/site.css?v=9">
 </head>
 <body class="has-bar">
 <a class="skip" href="#naryad">К бланку наряда</a>
@@ -34,6 +35,7 @@
       <a href="#oborot">Что входит</a>
       <a href="#sostav">Состав средств</a>
       <a href="#den">Как проходит</a>
+      <a class="nav__xs" href="#voprosy">Частые вопросы</a>
       <div class="nav__m">
         <a class="btn btn--pen" href="order.html">Оформить наряд</a>
         <a href="tel:+78310000000" data-demo="Звонок не пройдёт: «Чистовик» придуман для портфолио."><b class="num">+7&nbsp;831&nbsp;000-00-00</b></a>
@@ -51,6 +53,11 @@
   <div class="wrap">
     <section class="intro" aria-labelledby="h1">
       <h1 id="h1">Уборка по&nbsp;наряду <span class="hand">под&nbsp;роспись</span></h1>
+      <figure class="att intro__photo">
+        <span class="clip" aria-hidden="true"></span>
+        <img src="img/photo/brigadir.jpg" alt="Девушка в жёлтых перчатках протирает стол в светлой квартире" width="1100" height="619">
+        <figcaption><b>Бригада за работой</b>В&nbsp;перчатках, со&nbsp;своим пылесосом и&nbsp;средствами. Фото для примера.</figcaption>
+      </figure>
       <div class="intro__lead">
         <p>Заполните бланк: что убрать, кто живёт дома, когда приехать. На&nbsp;корешке наряда сразу видно, из&nbsp;чего сложилась цена.</p>
         <p>Бригада приезжает с&nbsp;этим нарядом, делает по&nbsp;пунктам и&nbsp;расписывается за&nbsp;каждый. Принимаете работу по&nbsp;нему&nbsp;же.</p>
@@ -79,12 +86,12 @@
         </div>
       </div>
       <ol class="terms">
-        <li><span class="terms__n">п.&nbsp;1</span><b>Цена из&nbsp;наряда&nbsp;— окончательная</b><p>На&nbsp;месте не&nbsp;«пересчитываем по&nbsp;факту». Новый пункт появляется только с&nbsp;ценой рядом и&nbsp;вашей подписью.</p></li>
+        <li><span class="terms__n">п.&nbsp;1</span><b>Цена из&nbsp;наряда&nbsp;— окончательная</b><p>Если площадь на&nbsp;месте отличается от&nbsp;наряда не&nbsp;больше чем на&nbsp;10&nbsp;%, цена не&nbsp;меняется. Новый пункт появляется только с&nbsp;ценой рядом и&nbsp;вашей подписью.</p></li>
         <li><span class="terms__n">п.&nbsp;2</span><b>Платите после приёмки</b><p>Предоплаты нет. Сначала проходите по&nbsp;наряду, потом платите картой, переводом по&nbsp;QR или наличными. Чек приходит на&nbsp;телефон.</p></li>
         <li><span class="terms__n">п.&nbsp;3</span><b>Пропустили&nbsp;— переделаем</b><p>Замечание в&nbsp;течение 24&nbsp;часов&nbsp;— приезжаем и&nbsp;доделываем бесплатно. Если и&nbsp;после этого плохо&nbsp;— возвращаем деньги за&nbsp;этот пункт.</p></li>
-        <li><span class="terms__n">п.&nbsp;4</span><b>Отвечаем за&nbsp;вещи</b><p>Испортили&nbsp;— возмещаем по&nbsp;чеку или оценке, до&nbsp;<span class="num">100&nbsp;000</span>&nbsp;₽. Это записано в&nbsp;договоре, а&nbsp;не&nbsp;в&nbsp;рекламе.</p><span class="stamp stamp--sm">в договоре</span></li>
+        <li><span class="terms__n">п.&nbsp;4</span><b>Отвечаем за&nbsp;вещи</b><p>Испортили&nbsp;— возмещаем по&nbsp;чеку или оценке, до&nbsp;<span class="num">100&nbsp;000</span>&nbsp;₽. Сумма и&nbsp;порядок записаны в&nbsp;договоре, п.&nbsp;4.</p><span class="stamp stamp--sm">в договоре</span></li>
         <li><span class="terms__n">п.&nbsp;5</span><b>Ключи&nbsp;— под роспись</b><p>Кладём в&nbsp;конверт с&nbsp;номером наряда и&nbsp;храним в&nbsp;сейфе офиса на&nbsp;Белинского, 61. Отдаём только вам, по&nbsp;подписи.</p></li>
-        <li><span class="terms__n">п.&nbsp;6</span><b>Отмена без штрафа</b><p>За&nbsp;12&nbsp;часов до&nbsp;приезда&nbsp;— бесплатно, звонком или в&nbsp;Telegram. Позже&nbsp;— <span class="num">500</span>&nbsp;₽ за&nbsp;выезд бригады.</p></li>
+        <li><span class="terms__n">п.&nbsp;6</span><b>Отмена без штрафа</b><p>За&nbsp;12&nbsp;часов до&nbsp;приезда&nbsp;— бесплатно, достаточно позвонить. Позже&nbsp;— <span class="num">500</span>&nbsp;₽ за&nbsp;выезд бригады.</p></li>
       </ol>
     </div>
   </section>
@@ -157,8 +164,8 @@
           <figcaption><b>Прил. 4 · Санузел</b>Швы и&nbsp;полотенцесушитель&nbsp;— в&nbsp;генеральной. В&nbsp;поддерживающей моем то, что на&nbsp;виду.</figcaption>
         </figure>
         <figure class="att att--tilt">
-          <img src="img/photo/tryapki.jpg" alt="Стопка чистых белых полотенец" loading="lazy" width="1000" height="667">
-          <figcaption><b>Прил. 5 · Тряпки</b>Микрофибра по&nbsp;цветам: синяя&nbsp;— стёкла, жёлтая&nbsp;— кухня, красная&nbsp;— санузел. После каждого заказа стираем при&nbsp;90&nbsp;°C.</figcaption>
+          <img src="img/photo/tryapki.jpg" alt="Свёрнутые синие и зелёные салфетки из микрофибры" loading="lazy" width="1000" height="667">
+          <figcaption><b>Прил. 5 · Тряпки</b>Микрофибра по&nbsp;цветам: синяя&nbsp;— стёкла и&nbsp;зеркала, зелёная&nbsp;— кухня и&nbsp;комнаты, для санузла&nbsp;— отдельная красная. После каждого заказа стираем при&nbsp;90&nbsp;°C.</figcaption>
         </figure>
       </div>
     </div>
@@ -178,6 +185,25 @@
     </div>
   </section>
 
+  <section class="sec sec--line faq-sec" id="voprosy" aria-labelledby="faq-h">
+    <div class="wrap faq">
+      <div>
+        <p class="kicker">Графа «Особые отметки»</p>
+        <h2 class="h2" id="faq-h">Что обычно спрашивают перед первым заказом</h2>
+        <p>Не&nbsp;нашли свой вопрос&nbsp;— позвоните, ответим до&nbsp;заказа: <a href="tel:+78310000000" data-demo="Звонок не пройдёт: «Чистовик» придуман для портфолио." class="num">+7&nbsp;831&nbsp;000-00-00</a>.</p>
+      </div>
+      <div class="qas">
+        <details class="qa"><summary><span class="qa__n num">01</span><span class="qa__q">Нужно ли быть дома во&nbsp;время уборки?</span><span class="qa__i" aria-hidden="true"></span></summary><p>Нет. Ключи можно оставить в&nbsp;офисе на&nbsp;Белинского, 61 или у&nbsp;консьержа. Ключи хранятся в&nbsp;конверте с&nbsp;номером наряда, а&nbsp;в&nbsp;конце бригадир присылает фото каждой комнаты.</p></details>
+        <details class="qa"><summary><span class="qa__n num">02</span><span class="qa__q">Вы привозите пылесос и&nbsp;средства?</span><span class="qa__i" aria-hidden="true"></span></summary><p>Да: пылесос, парогенератор, стремянку, микрофибру и&nbsp;набор средств. От&nbsp;вас нужны только вода и&nbsp;электричество.</p></details>
+        <details class="qa"><summary><span class="qa__n num">03</span><span class="qa__q">Почему у&nbsp;вас цена без «от»?</span><span class="qa__i" aria-hidden="true"></span></summary><p>Цена считается по&nbsp;тому, что вы&nbsp;отметили в&nbsp;бланке. Если площадь на&nbsp;месте отличается не&nbsp;больше чем на&nbsp;10&nbsp;%, она не&nbsp;меняется. Если больше, бригадир скажет об&nbsp;этом до&nbsp;начала работы.</p></details>
+        <details class="qa"><summary><span class="qa__n num">04</span><span class="qa__q">Сколько человек приедет и&nbsp;сколько это займёт?</span><span class="qa__i" aria-hidden="true"></span></summary><p>Это видно на&nbsp;корешке наряда: время считается по&nbsp;площади и&nbsp;допам. Генеральная уборка двухкомнатной квартиры&nbsp;— обычно два человека и&nbsp;около четырёх часов.</p></details>
+        <details class="qa"><summary><span class="qa__n num">05</span><span class="qa__q">Что если что-то было сломано ещё до&nbsp;вас?</span><span class="qa__i" aria-hidden="true"></span></summary><p>При обходе бригадир отмечает такие места в&nbsp;наряде и&nbsp;показывает вам до&nbsp;начала работы. За&nbsp;то, что испортили мы, отвечаем по&nbsp;договору до&nbsp;100&nbsp;000&nbsp;₽.</p></details>
+        <details class="qa"><summary><span class="qa__n num">06</span><span class="qa__q">Можно попросить ту&nbsp;же бригаду?</span><span class="qa__i" aria-hidden="true"></span></summary><p>При регулярной уборке приезжает та&nbsp;же бригада. Для разового заказа напишите имя бригадира в&nbsp;комментарии к&nbsp;наряду.</p></details>
+        <details class="qa"><summary><span class="qa__n num">07</span><span class="qa__q">Моете окна зимой?</span><span class="qa__i" aria-hidden="true"></span></summary><p>Да, если на&nbsp;улице не&nbsp;холоднее −5&nbsp;°C. В&nbsp;мороз моем только изнутри и&nbsp;не&nbsp;берём деньги за&nbsp;внешнюю сторону.</p></details>
+      </div>
+    </div>
+  </section>
+
   <section class="sec sec--line notes-sec" id="otmetki" aria-labelledby="otm-h">
     <div class="wrap">
       <div class="attach__head">
@@ -190,21 +216,21 @@
           <p class="nt__h">Наряд № 0311-214<br>генеральная · 64&nbsp;м² · ул.&nbsp;Родионова</p>
           <p class="nt__l">Замечания заказчика</p>
           <p class="nt__t">Духовку не узнала. Швы в ванной стали белые, а я думала, они серые с рождения.</p>
-          <p class="nt__sign"><span>Работу принял(а)</span><span>Иванна И.</span></p>
+          <p class="nt__sign"><span>Работу принял(а)</span><span>Анна П.</span></p>
         </article>
         <article class="nt">
           <span class="stamp">пример</span>
           <p class="nt__h">Наряд № 2810-118<br>поддерживающая · 38&nbsp;м²</p>
           <p class="nt__l">Замечания заказчика</p>
           <p class="nt__t">Забыли плафон в коридоре. Позвонил&nbsp;— на следующий день приехали и доделали, денег не взяли.</p>
-          <p class="nt__sign"><span>Работу принял(а)</span><span>Иван И.</span></p>
+          <p class="nt__sign"><span>Работу принял(а)</span><span>Олег С.</span></p>
         </article>
         <article class="nt">
           <span class="stamp">пример</span>
           <p class="nt__h">Наряд № 1409-305<br>после ремонта · 81&nbsp;м² · бережный набор</p>
           <p class="nt__l">Замечания заказчика</p>
           <p class="nt__t">У сына аллергия, просили без химии. Вечером дома ничем не пахло. Пыль за шкафом тоже достали.</p>
-          <p class="nt__sign"><span>Работу принял(а)</span><span>Иванна И.</span></p>
+          <p class="nt__sign"><span>Работу принял(а)</span><span>Марина К.</span></p>
         </article>
       </div>
     </div>
@@ -238,6 +264,7 @@
           <li><a href="#sostav">Состав средств</a></li>
           <li><a href="#garantii">Гарантии</a></li>
           <li><a href="#den">Как проходит</a></li>
+          <li><a href="#voprosy">Частые вопросы</a></li>
           <li><a href="usloviya.html">Условия и&nbsp;договор</a></li>
           <li><a href="order.html">Оформить наряд</a></li>
         </ul>
@@ -252,10 +279,10 @@
 
 <div class="mbar" id="mbar" aria-label="Итог наряда"></div>
 
-<script src="js/data.js?v=7"></script>
-<script src="js/engine.js?v=7"></script>
-<script src="js/blank.js?v=7"></script>
-<script src="js/ui.js?v=7"></script>
+<script src="js/data.js?v=9"></script>
+<script src="js/engine.js?v=9"></script>
+<script src="js/blank.js?v=9"></script>
+<script src="js/ui.js?v=9"></script>
 <script>
   Blank.mountForm(document.getElementById('blank'));
   Blank.mountStub(document.getElementById('stub'));

@@ -14,10 +14,11 @@
 <meta property="og:url" content="https://cleaning-ten-sigma.vercel.app/order.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;700&family=Onest:wght@400;500;600&family=Martian+Mono:wdth,wght@75..112.5,300..500&family=Bad+Script&display=swap">
-<link rel="stylesheet" href="css/site.css?v=7">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/ibm-plex-sans-condensed-700-cyrillic-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/onest-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=9">
+<link rel="stylesheet" href="css/site.css?v=9">
 </head>
 <body>
 <a class="skip" href="#steps">К шагам заказа</a>
@@ -34,6 +35,7 @@
       <a href="index.html#oborot">Что входит</a>
       <a href="index.html#sostav">Состав средств</a>
       <a href="index.html#den">Как проходит</a>
+      <a class="nav__xs" href="index.html#voprosy">Частые вопросы</a>
       <div class="nav__m">
         <a class="btn btn--pen" href="order.html">Оформить наряд</a>
         <a href="tel:+78310000000" data-demo="Звонок не пройдёт: «Чистовик» придуман для портфолио."><b class="num">+7&nbsp;831&nbsp;000-00-00</b></a>
@@ -62,8 +64,10 @@
     <div>
       <section class="pane" data-step="1" aria-labelledby="h-1">
         <h2 class="pane__h" id="h-1">Проверьте расчёт</h2>
-        <p class="pane__lead">Здесь тот&nbsp;же бланк, что на&nbsp;главной. Поменяйте что угодно — цена на&nbsp;корешке пересчитается.</p>
-        <form class="blank" id="blank" data-no-when novalidate></form>
+        <p class="pane__lead">Это то, что вы&nbsp;отметили в&nbsp;бланке на&nbsp;главной. Если что-то не&nbsp;так, поправьте&nbsp;— цена на&nbsp;корешке пересчитается.</p>
+        <div id="sum1"></div>
+        <p style="margin:18px 0 0"><button class="btn btn--line" type="button" id="editBlank" aria-expanded="false" aria-controls="blank">Изменить в бланке</button></p>
+        <form class="blank" id="blank" data-no-when novalidate hidden></form>
         <div class="pane__nav">
           <a class="btn btn--line" href="index.html">На&nbsp;главную</a>
           <button class="btn btn--pen" type="button" data-next>Дальше: время →</button>
@@ -123,10 +127,12 @@
           <button class="btn btn--line" type="button" data-prev>← Данные</button>
           <span style="display:flex;gap:10px;flex-wrap:wrap">
             <button class="btn btn--line" type="button" data-print>Распечатать</button>
-            <button class="btn btn--pen" type="button" data-demo="Заказ не уйдёт: «Чистовик» придуман для портфолио, бригада не приедет.">Подтвердить заказ</button>
+            <button class="btn btn--pen" type="button" data-confirm>Подтвердить заказ</button>
           </span>
         </div>
       </section>
+
+      <section class="pane done" id="done" aria-live="polite" hidden></section>
     </div>
     <aside class="stub" aria-label="Корешок: расчёт цены" aria-live="polite"><div class="stub__in" id="stub"></div></aside>
   </div>
@@ -141,10 +147,10 @@
   </div>
 </footer>
 
-<script src="js/data.js?v=7"></script>
-<script src="js/engine.js?v=7"></script>
-<script src="js/blank.js?v=7"></script>
-<script src="js/ui.js?v=7"></script>
-<script src="js/order.js?v=7"></script>
+<script src="js/data.js?v=9"></script>
+<script src="js/engine.js?v=9"></script>
+<script src="js/blank.js?v=9"></script>
+<script src="js/ui.js?v=9"></script>
+<script src="js/order.js?v=9"></script>
 </body>
 </html>

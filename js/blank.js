@@ -6,6 +6,10 @@ window.Blank = (function (D, CH) {
   const DEF_COUNT = { windows: 4, cabinets: 2, chandelier: 1, ironing: 1 };
   const PER = { windows: 'за створку', cabinets: 'за штуку', chandelier: 'за штуку', ironing: 'за час' };
   const CNT = { windows: 'Сколько створок', cabinets: 'Сколько шкафов', chandelier: 'Сколько люстр', ironing: 'Сколько часов' };
+  /* Допы и чек-лист на телефоне свёрнуты по группам: раскрывается только то, что выбрали */
+  const XG = [['Кухня', ['oven', 'fridge', 'micro', 'hood', 'dishes']], ['Окна и комнаты', ['windows', 'balcony', 'cabinets', 'chandelier', 'ironing']], ['Питомцы', ['pethair', 'litter']]];
+  const narrow = () => window.matchMedia('(max-width: 820px)').matches;
+  const openRooms = new Set();
 
   let S = CH.load();
   const subs = [];
@@ -39,7 +43,7 @@ window.Blank = (function (D, CH) {
     const house = D.HOUSE.map(h => `
       <label class="cbx"><input type="checkbox" name="house" value="${h.id}"${S.house.includes(h.id) ? ' checked' : ''}><span class="box">${TICK}</span><span>${h.name}</span></label>`).join('');
 
-    const extras = D.EXTRAS.map(x => {
+    const xrow = x => {
       const n = S.extras[x.id] || 0;
       return `<li class="xrow" data-x="${x.id}">
         <label class="cbx"><input type="checkbox" name="extra" value="${x.id}"${n ? ' checked' : ''}><span class="box">${TICK}</span>
@@ -48,7 +52,9 @@ window.Blank = (function (D, CH) {
         <span class="xrow__inc">входит</span>
         <span class="xrow__cnt">${x.count ? `<span class="unit">${CNT[x.id]}</span>` + stepper('x:' + x.id, n || DEF_COUNT[x.id] || 1, 1, x.max, x.name) : ''}</span>
       </li>`;
-    }).join('');
+    };
+    const extras = XG.map(([g, ids], i) => `<details class="xg" data-g="${i}"><summary><span class="xg__t">${g}</span><span class="xg__s" data-xg-sum></span></summary>
+      <ul class="xrows">${ids.map(id => xrow(D.EXTRAS.find(x => x.id === id))).join('')}</ul></details>`).join('');
 
     const days = CH.days(10).map(d => `
       <label class="day${d.weekend ? ' day--we' : ''}"><input type="radio" name="date" value="${d.iso}"${S.date === d.iso ? ' checked' : ''}>
@@ -60,7 +66,7 @@ window.Blank = (function (D, CH) {
     <div class="blank__head">
       <div>
         <p class="blank__form">Форма Ч-1, заполняется заказчиком</p>
-        <h2 class="blank__title">Наряд-заказ<br>на уборку</h2>
+        <h2 class="blank__title">Наряд‑заказ<br>на уборку</h2>
       </div>
       <dl class="blank__meta">
         <div><dt>№</dt><dd class="pen num" data-num>${S.number}</dd></div>
@@ -78,7 +84,7 @@ window.Blank = (function (D, CH) {
       <p class="f__line">Считать по: ${circ('mode', 'rooms', 'комнатам', S.mode === 'rooms')} ${circ('mode', 'area', 'площади', S.mode === 'area')}</p>
       <div class="f__pane" data-pane="rooms"${S.mode === 'rooms' ? '' : ' hidden'}>
         <div class="chips">${presets}</div>
-        <p class="small">Считаем по${NB}типовой площади. Если на месте окажется больше на${NB}10${NB}% — бригадир скажет новую цену до${NB}начала, не${NB}после.</p>
+        <p class="small">Считаем по${NB}типовой площади. Цена не${NB}меняется, если на${NB}месте площадь отличается не${NB}больше чем на${NB}10${NB}%. Если больше — бригадир скажет новую цену до${NB}начала, не${NB}после.</p>
       </div>
       <div class="f__pane" data-pane="area"${S.mode === 'area' ? '' : ' hidden'}>
         <div class="ruler">
@@ -104,7 +110,7 @@ window.Blank = (function (D, CH) {
 
     <fieldset class="f">
       <legend><span class="f__n">5</span>Дополнительно <em>сколько угодно</em></legend>
-      <ul class="xrows">${extras}</ul>
+      <div class="xgs">${extras}</div>
     </fieldset>
 
     <fieldset class="f">
@@ -151,6 +157,7 @@ window.Blank = (function (D, CH) {
 
   function mountForm(form) {
     form.innerHTML = formHTML();
+    form.querySelectorAll('.xg').forEach(g => { g.open = !narrow() || !!g.querySelector('input[name=extra]:checked'); });
 
     form.addEventListener('change', e => {
       const t = e.target;
@@ -194,9 +201,15 @@ window.Blank = (function (D, CH) {
       row.querySelector('input').disabled = inc;
       row.classList.toggle('is-on', !!s.extras[x.id] && !inc);
     });
+    // итог по группам допов: видно, что выбрано, даже когда группа свёрнута
+    form.querySelectorAll('.xg').forEach(g => {
+      const on = [...g.querySelectorAll('.xrow.is-on')];
+      const sum = on.reduce((a, row) => { const x = D.EXTRAS.find(e => e.id === row.dataset.x); return a + x.price * (x.count ? s.extras[x.id] : 1); }, 0);
+      g.querySelector('[data-xg-sum]').innerHTML = on.length ? `выбрано ${on.length} · <span class="num">${CH.fmt(sum)}</span>` : 'не выбрано';
+    });
     // кто дома → химия
     const hn = form.querySelector('[data-house-note]');
-    if (s.house.length && s.chem === 'gentle') { hn.hidden = false; hn.textContent = 'Поставили бережный набор: без хлора, без отдушек, кислоты — только пищевые. Можно вернуть стандартный в пункте 4.'; }
+    if (s.house.length && s.chem === 'gentle') { hn.hidden = false; hn.textContent = 'Поставили бережный набор: без хлора и отдушек, только мягкие средства. Можно вернуть стандартный в пункте 4.'; }
     else if (s.house.length && s.chem === 'standard') { hn.hidden = false; hn.textContent = 'Вы выбрали стандартный набор. Хлорный гель при детях и аллергиках всё равно заменим на перекись — это правило бригады.'; }
     else hn.hidden = true;
     const cn = form.querySelector('[data-chem-note]');
@@ -258,7 +271,7 @@ window.Blank = (function (D, CH) {
       ${opts && opts.actions === false ? '' : `
       <a class="btn btn--pen" href="order.html" data-go-order>Оформить наряд</a>
       <a class="stub__link" href="#oborot">Что именно сделаем — ${r.count}${NB}${D.plural(r.count, 'пункт', 'пункта', 'пунктов')} ↓</a>`}
-      <p class="stub__fine">Цену не меняем на месте, если площадь совпала с${NB}нарядом ±10${NB}%. Оплата после приёмки.</p>`;
+      <p class="stub__fine">Цена окончательная, если площадь отличается от${NB}наряда не${NB}больше чем на${NB}10${NB}%. Оплата после приёмки.</p>`;
   }
   function mountStub(el, opts) {
     on(s => { el.innerHTML = stubHTML(s, opts); });
@@ -274,7 +287,7 @@ window.Blank = (function (D, CH) {
   function typeNames(ids) {
     return D.TYPES.filter(t => ids.includes(t.id)).map(t => t.name.toLowerCase()).join(', ');
   }
-  function checklistHTML(s, showOff) {
+  function checklistHTML(s, showOff, collapse) {
     const rooms = CH.checklist(s);
     let n = 0;
     return rooms.map(room => {
@@ -284,13 +297,15 @@ window.Blank = (function (D, CH) {
         return `<li class="it${it.extra ? ' it--extra' : ''}"><span class="it__n">${String(n).padStart(2, '0')}</span><span class="it__box" aria-hidden="true"></span><span class="it__x">${esc(it.x)}${c ? `<small>${esc(c.name)}</small>` : ''}</span><span class="it__sign" aria-hidden="true">подпись</span></li>`;
       }).join('');
       const off = showOff ? room.excluded.map(it => `<li class="it it--off"><span class="it__n">—</span><span class="it__box" aria-hidden="true"></span><span class="it__x"><s>${esc(it.x)}</s><small>только: ${typeNames(it.t)}</small></span><span class="it__sign"></span></li>`).join('') : '';
-      return `<section class="room">
-        <h3 class="room__h">${room.label}<span class="pen num">${room.items.length}</span></h3>
-        <ol class="room__list">${items}${off}</ol></section>`;
+      const open = !collapse || openRooms.has(room.label);
+      return `<details class="room" data-room="${esc(room.label)}"${open ? ' open' : ''}>
+        <summary class="room__h"><span>${room.label}</span><span class="pen num">${room.items.length}</span></summary>
+        <ol class="room__list">${items}${off}</ol></details>`;
     }).join('');
   }
   function mountChecklist(el, toggle) {
-    const draw = s => { el.innerHTML = checklistHTML(s, toggle && toggle.checked); };
+    const draw = s => { el.innerHTML = checklistHTML(s, toggle && toggle.checked, narrow()); };
+    el.addEventListener('toggle', e => { const d = e.target; if (!d.dataset || !d.dataset.room) return; d.open ? openRooms.add(d.dataset.room) : openRooms.delete(d.dataset.room); }, true);
     if (toggle) toggle.addEventListener('change', () => draw(S));
     on(draw);
   }
@@ -305,10 +320,13 @@ window.Blank = (function (D, CH) {
       <thead><tr><th>Для чего</th><th>Средство</th><th>Действующее вещество</th><th>pH</th><th>Запах</th><th>Проветрить</th><th>Аллергикам</th></tr></thead>
       <tbody>${Object.keys(D.ROLES).map(k => {
         const c = set[k];
-        return `<tr><th scope="row">${D.ROLES[k]}</th><td>${c.name}</td><td>${c.active}</td><td class="num">${c.ph}</td><td>${c.smell}</td><td class="num">${c.wait ? c.wait + NB + 'мин' : 'сразу'}</td><td>${c.allergy ? 'да' : 'нет'}</td></tr>`;
+        return `<tr><th scope="row" tabindex="0" aria-expanded="false">${D.ROLES[k]}<small class="label__sum">${c.name}</small></th><td>${c.name}</td><td>${c.active}</td><td class="num">${c.ph}</td><td>${c.smell}</td><td class="num">${c.wait ? c.wait + NB + 'мин' : 'сразу'}</td><td>${c.allergy ? 'да' : 'нет'}</td></tr>`;
       }).join('')}</tbody></table>`;
   }
   function mountChem(el, tabs) {
+    const flip = th => { const tr = th.closest('tr'); tr.classList.toggle('is-open'); th.setAttribute('aria-expanded', String(tr.classList.contains('is-open'))); };
+    el.addEventListener('click', e => { const th = e.target.closest('tbody th'); if (th && narrow()) flip(th); });
+    el.addEventListener('keydown', e => { const th = e.target.closest('tbody th'); if (th && narrow() && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); flip(th); } });
     if (tabs) tabs.addEventListener('change', e => {
       if (e.target.name !== 'chemTab') return;
       set({ chem: e.target.value, chemTouched: true });
