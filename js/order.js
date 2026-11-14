@@ -253,8 +253,7 @@
   function confirmOrder() {
     const btn = document.querySelector('[data-confirm]'); if (btn) btn.disabled = true;
     const stub = document.querySelector('aside.stub');
-    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!stub || still || getComputedStyle(stub).display === 'none') { if (stub) stub.hidden = true; buildDone(); return; }
+    if (!stub || getComputedStyle(stub).display === 'none') { if (stub) stub.hidden = true; buildDone(); return; }
     const pts = ['100% 0', '100% 100%'];
     for (let y = 100; y > 0; y -= 1.2 + Math.random() * 2.2) pts.push((Math.random() * 6).toFixed(1) + 'px ' + y.toFixed(1) + '%');
     pts.push('3px 0');
