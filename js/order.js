@@ -249,7 +249,21 @@
   });
 
   /* ---------- после подтверждения: наряд принят ---------- */
+  /* Подтверждение: корешок отрывается по перфорации, потом экран «Наряд принят» со штампом */
   function confirmOrder() {
+    const btn = document.querySelector('[data-confirm]'); if (btn) btn.disabled = true;
+    const stub = document.querySelector('aside.stub');
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!stub || still || getComputedStyle(stub).display === 'none') { if (stub) stub.hidden = true; buildDone(); return; }
+    const pts = ['100% 0', '100% 100%'];
+    for (let y = 100; y > 0; y -= 1.2 + Math.random() * 2.2) pts.push((Math.random() * 6).toFixed(1) + 'px ' + y.toFixed(1) + '%');
+    pts.push('3px 0');
+    stub.style.clipPath = 'polygon(' + pts.join(',') + ')';
+    stub.classList.add('is-tearing');
+    setTimeout(() => { stub.hidden = true; buildDone(); }, 820);
+  }
+
+  function buildDone() {
     const s = B.state, c = s.client || {};
     const { hours } = CH.workload(s);
     const b = brigade(s.date, s.slot);
@@ -267,6 +281,7 @@
       <p class="pane__nav"><a class="btn btn--line" href="index.html">На главную</a><a class="btn btn--pen" href="usloviya.html">Условия и договор</a></p>`;
     panes.forEach(p => { p.hidden = true; });
     $('#done').hidden = false;
+    $('#done').classList.add('is-hit');
     $('#steps').innerHTML = STEPS.map((name, i) => `<li><span class="done" aria-disabled="true"><b>${i + 1}</b>${name}</span></li>`).join('');
     $('#steps').scrollIntoView({ block: 'start' });
     window.showDemo('Это наряд из пробного сайта: SMS не придёт, бригада не приедет. «Чистовик» придуман для портфолио.');

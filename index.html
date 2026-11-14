@@ -17,8 +17,8 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preload" href="fonts/ibm-plex-sans-condensed-700-cyrillic-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/onest-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/fonts.css?v=9">
-<link rel="stylesheet" href="css/site.css?v=9">
+<link rel="stylesheet" href="css/fonts.css?v=10">
+<link rel="stylesheet" href="css/site.css?v=10">
 </head>
 <body class="has-bar">
 <a class="skip" href="#naryad">К бланку наряда</a>
@@ -32,6 +32,7 @@
     <nav class="nav" aria-label="Разделы">
       <a href="#naryad">Наряд и&nbsp;цена</a>
       <a href="#garantii">Гарантии</a>
+      <a href="#o-nas">О&nbsp;нас</a>
       <a href="#oborot">Что входит</a>
       <a href="#sostav">Состав средств</a>
       <a href="#den">Как проходит</a>
@@ -51,17 +52,21 @@
 
 <main id="main">
   <div class="wrap">
-    <section class="intro" aria-labelledby="h1">
-      <h1 id="h1">Уборка по&nbsp;наряду <span class="hand">под&nbsp;роспись</span></h1>
-      <figure class="att intro__photo">
-        <span class="clip" aria-hidden="true"></span>
-        <img src="img/photo/brigadir.jpg" alt="Девушка в жёлтых перчатках протирает стол в светлой квартире" width="1100" height="619">
-        <figcaption><b>Бригада за работой</b>В&nbsp;перчатках, со&nbsp;своим пылесосом и&nbsp;средствами. Фото для примера.</figcaption>
-      </figure>
-      <div class="intro__lead">
-        <p>Заполните бланк: что убрать, кто живёт дома, когда приехать. На&nbsp;корешке наряда сразу видно, из&nbsp;чего сложилась цена.</p>
-        <p>Бригада приезжает с&nbsp;этим нарядом, делает по&nbsp;пунктам и&nbsp;расписывается за&nbsp;каждый. Принимаете работу по&nbsp;нему&nbsp;же.</p>
-        <div class="intro__facts"><span>Нижний Новгород и&nbsp;Кстово</span><span>оплата после приёмки</span><span>переделка за&nbsp;24&nbsp;ч бесплатно</span></div>
+    <section class="intro hero" aria-labelledby="h1">
+      <div class="hero__text">
+        <p class="kicker">Уборка квартир в&nbsp;Нижнем Новгороде и&nbsp;Кстово</p>
+        <h1 id="h1">Уборка по&nbsp;наряду <span class="hand">под&nbsp;роспись</span></h1>
+        <p class="hero__lead">Отметьте в&nbsp;бланке, что убрать и&nbsp;когда приехать, и&nbsp;сразу увидите цену. Бригада работает по&nbsp;пунктам наряда и&nbsp;расписывается за&nbsp;каждый, а&nbsp;вы&nbsp;принимаете уборку по&nbsp;нему&nbsp;же.</p>
+        <div class="hero__cta"><a class="btn btn--pen" href="order.html">Оформить наряд</a><a class="btn btn--line" href="#oborot">Что входит в&nbsp;уборку</a></div>
+        <ul class="hero__facts">
+          <li><b>Оплата после приёмки</b>Сначала проверяете работу, потом платите.</li>
+          <li><b>Цена без «от»</b>Не&nbsp;меняется, если площадь отличается не&nbsp;больше чем на&nbsp;10&nbsp;%.</li>
+          <li><b>Переделка за&nbsp;24&nbsp;часа</b>Бесплатно, достаточно позвонить.</li>
+        </ul>
+      </div>
+      <div class="cb">
+        <img class="cb__img" src="img/clipboard.webp" alt="" width="760" height="1238" fetchpriority="high">
+        <form class="cb__paper" id="quick" aria-label="Быстрый расчёт цены"></form>
       </div>
     </section>
 
@@ -78,12 +83,7 @@
         <h2 class="h2" id="gar-h">Почему нам можно доверить ключи</h2>
         <p>Чужих людей в&nbsp;квартиру пускать страшно. Поэтому всё, что обычно обещают на&nbsp;словах, у&nbsp;нас напечатано на&nbsp;обороте наряда. Бригадир расписывается под этим, вы&nbsp;— тоже.</p>
         <p><a href="usloviya.html">Полные условия и&nbsp;договор →</a></p>
-        <div class="crew" aria-label="Кто приедет">
-          <p class="crew__k">Кто приедет&nbsp;— бригадиры в&nbsp;штате</p>
-          <div class="crew__p"><b>Иван Иванов</b><small>после ремонта и&nbsp;переездов</small><span class="crew__sig" aria-hidden="true">И.&nbsp;Иванов</span></div>
-          <div class="crew__p"><b>Иванна Иванова</b><small>бережные уборки, дома с&nbsp;детьми и&nbsp;животными</small><span class="crew__sig" aria-hidden="true">Иванова</span></div>
-          <p class="crew__note">Накануне придёт SMS: кто именно приедет и&nbsp;во&nbsp;сколько. Приедет другой человек&nbsp;— можно не&nbsp;открывать.</p>
-        </div>
+        <p><a href="#o-nas">Кто к&nbsp;вам приедет →</a></p>
       </div>
       <ol class="terms">
         <li><span class="terms__n">п.&nbsp;1</span><b>Цена из&nbsp;наряда&nbsp;— окончательная</b><p>Если площадь на&nbsp;месте отличается от&nbsp;наряда не&nbsp;больше чем на&nbsp;10&nbsp;%, цена не&nbsp;меняется. Новый пункт появляется только с&nbsp;ценой рядом и&nbsp;вашей подписью.</p></li>
@@ -93,6 +93,35 @@
         <li><span class="terms__n">п.&nbsp;5</span><b>Ключи&nbsp;— под роспись</b><p>Кладём в&nbsp;конверт с&nbsp;номером наряда и&nbsp;храним в&nbsp;сейфе офиса на&nbsp;Белинского, 61. Отдаём только вам, по&nbsp;подписи.</p></li>
         <li><span class="terms__n">п.&nbsp;6</span><b>Отмена без штрафа</b><p>За&nbsp;12&nbsp;часов до&nbsp;приезда&nbsp;— бесплатно, достаточно позвонить. Позже&nbsp;— <span class="num">500</span>&nbsp;₽ за&nbsp;выезд бригады.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--line about-sec" id="o-nas" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="about">
+        <figure class="about__ph"><img src="img/photo/rabota.jpg" alt="Сотрудница в зелёной форме и перчатках чистит пылесосом мягкую мебель" width="1100" height="733" loading="lazy"><figcaption>Фото для примера</figcaption></figure>
+        <div class="about__txt">
+          <p class="kicker">О&nbsp;нас</p>
+          <h2 class="h2" id="about-h">Небольшая клининговая компания с&nbsp;офисом на&nbsp;Белинского,&nbsp;61</h2>
+          <p>Убираем квартиры в&nbsp;Нижнем Новгороде и&nbsp;Кстово. Каждый наряд ведёт один бригадир: он&nbsp;знает вашу квартиру и&nbsp;отвечает за&nbsp;результат своей подписью.</p>
+          <ul class="about__list">
+            <li><b>Все сотрудники в&nbsp;штате</b>Трудовой договор и&nbsp;проверка документов при найме. Случайных людей с&nbsp;объявлений не&nbsp;отправляем.</li>
+            <li><b>Две недели стажировки</b>Новичок выезжает только вместе с&nbsp;бригадиром и&nbsp;работает по&nbsp;тому&nbsp;же наряду.</li>
+            <li><b>Одна бригада на&nbsp;регулярные уборки</b>Не&nbsp;нужно каждый раз объяснять, где что лежит.</li>
+            <li><b>Накануне SMS с&nbsp;именем бригадира</b>Если приехал другой человек, можно не&nbsp;открывать.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="team">
+        <h3 class="team__h">Кто отвечает за&nbsp;ваш наряд</h3>
+        <div class="team__grid">
+        <figure class="mate"><img src="img/team/brigadir.jpg" alt="Девушка с собранными волосами в белой футболке улыбается" width="480" height="600" loading="lazy"><i>фото для примера</i><figcaption><b>Бригадир</b><span>Проверяет наряд перед выездом, звонит вам накануне в&nbsp;19:00 и&nbsp;расписывается за&nbsp;каждый пункт.</span></figcaption></figure>
+        <figure class="mate"><img src="img/team/kachestvo.jpg" alt="Женщина с короткими кудрявыми волосами в полосатом жакете" width="480" height="600" loading="lazy"><i>фото для примера</i><figcaption><b>Старший по&nbsp;качеству</b><span>Принимает работу по&nbsp;чек-листу, если вас нет дома, и&nbsp;разбирает каждое замечание.</span></figcaption></figure>
+        <figure class="mate"><img src="img/team/okna.jpg" alt="Мужчина с тёмными волосами в сером свитере" width="480" height="600" loading="lazy"><i>фото для примера</i><figcaption><b>Мастер по&nbsp;окнам и&nbsp;мебели</b><span>Моет окна с&nbsp;двух сторон, чистит диваны и&nbsp;кресла паром.</span></figcaption></figure>
+        <figure class="mate"><img src="img/team/dispetcher.jpg" alt="Мужчина с бородой в чёрной футболке улыбается" width="480" height="600" loading="lazy"><i>фото для примера</i><figcaption><b>Диспетчер</b><span>Отвечает на&nbsp;звонки с&nbsp;8:00 до&nbsp;21:00, переносит и&nbsp;меняет наряды.</span></figcaption></figure>
+        </div>
+        <p class="team__note">«Чистовик» — демонстрационный сайт для портфолио, лица взяты со&nbsp;стоковых фото.</p>
+      </div>
     </div>
   </section>
 
@@ -263,6 +292,7 @@
           <li><a href="#oborot">Что входит</a></li>
           <li><a href="#sostav">Состав средств</a></li>
           <li><a href="#garantii">Гарантии</a></li>
+          <li><a href="#o-nas">О&nbsp;нас</a></li>
           <li><a href="#den">Как проходит</a></li>
           <li><a href="#voprosy">Частые вопросы</a></li>
           <li><a href="usloviya.html">Условия и&nbsp;договор</a></li>
@@ -279,16 +309,44 @@
 
 <div class="mbar" id="mbar" aria-label="Итог наряда"></div>
 
-<script src="js/data.js?v=9"></script>
-<script src="js/engine.js?v=9"></script>
-<script src="js/blank.js?v=9"></script>
-<script src="js/ui.js?v=9"></script>
+<script src="js/data.js?v=10"></script>
+<script src="js/engine.js?v=10"></script>
+<script src="js/blank.js?v=10"></script>
+<script src="js/ui.js?v=10"></script>
 <script>
   Blank.mountForm(document.getElementById('blank'));
   Blank.mountStub(document.getElementById('stub'));
   Blank.mountBar(document.getElementById('mbar'));
   Blank.mountChecklist(document.getElementById('rooms'), document.getElementById('showOff'));
   Blank.mountChem(document.getElementById('chem'), document.getElementById('chemTabs'));
+  /* Планшет на первом экране: тот же наряд, что и в бланке ниже */
+  (function () {
+    const q = document.getElementById('quick'); if (!q) return;
+    const D = CH_DATA, EX = ['oven', 'fridge', 'micro'];
+    q.innerHTML = `<div class="q__head"><b>Наряд‑заказ</b><span class="num">№ <span data-qnum></span></span></div>
+      <fieldset class="q__f"><legend>Вид уборки</legend><div class="q__opts">${D.TYPES.map(t => `<label class="circ"><input type="radio" name="qtype" value="${t.id}"><span>${t.name}</span></label>`).join('')}</div></fieldset>
+      <fieldset class="q__f"><legend>Квартира</legend><div class="q__opts">${D.PRESETS.map(p => `<label class="circ"><input type="radio" name="qpreset" value="${p.id}"><span>${p.name}</span></label>`).join('')}</div></fieldset>
+      <fieldset class="q__f"><legend>Ещё на кухне</legend><div class="q__x">${EX.map(id => { const x = D.EXTRAS.find(e => e.id === id); return `<label class="cbx"><input type="checkbox" name="qx" value="${id}"><span class="box">${Blank.TICK}</span><span>${x.name}</span><span class="q__p num">+${CH.fmt(x.price)}</span></label>`; }).join('')}</div></fieldset>
+      <div class="q__tot"><div><span class="q__k">Итого по наряду</span><small data-qwork></small></div><strong class="pen num" data-qtotal></strong></div>
+      <a class="btn btn--pen q__go" href="order.html">Оформить наряд</a>
+      <a class="q__more" href="#naryad">Дата, допы и&nbsp;кто дома&nbsp;— в&nbsp;полном бланке ↓</a>`;
+    q.addEventListener('submit', e => e.preventDefault());
+    q.addEventListener('change', e => {
+      const t = e.target, s = Blank.state;
+      if (t.name === 'qtype') Blank.set({ type: t.value });
+      if (t.name === 'qpreset') { const p = D.PRESETS.find(x => x.id === t.value); Blank.set({ mode: 'rooms', preset: p.id, area: p.area, rooms: p.rooms }); }
+      if (t.name === 'qx') { const ex = Object.assign({}, s.extras); if (t.checked) ex[t.value] = 1; else delete ex[t.value]; Blank.set({ extras: ex }); }
+    });
+    Blank.on(s => {
+      q.querySelectorAll('[name=qtype]').forEach(i => { i.checked = i.value === s.type; });
+      q.querySelectorAll('[name=qpreset]').forEach(i => { i.checked = s.mode === 'rooms' && i.value === s.preset; });
+      q.querySelectorAll('[name=qx]').forEach(i => { i.checked = !!s.extras[i.value]; });
+      const r = CH.calc(s);
+      q.querySelector('[data-qtotal]').textContent = CH.fmt(r.total);
+      q.querySelector('[data-qwork]').textContent = r.work.people + ' ' + D.plural(r.work.people, 'человек', 'человека', 'человек') + ' · ' + CH.hoursText(r.work.hours);
+      q.querySelector('[data-qnum]').textContent = s.number;
+    });
+  })();
 </script>
 </body>
 </html>

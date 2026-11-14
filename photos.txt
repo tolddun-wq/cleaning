@@ -18,3 +18,14 @@ https://unsplash.com/photos/yellow-lemon-fruit-beside-clear-glass-bottle-n5qirFA
 https://unsplash.com/photos/kitchen-with-white-cabinets-and-tiles-z3QZ6gjGRt4   (photo-1556912173-3bb406ef7e77)
 https://unsplash.com/photos/hand-in-glove-holding-spray-bottle-ho-p7qLBewk   (photo-1628177142898-93e36e4e3a50)
 https://unsplash.com/photos/a-woman-is-cleaning-a-kitchen-sink-with-a-rag-SqOMDOQb3ws   (photo-1642505172378-a6f5e5b15580)
+
+Главная, первый экран — планшет (вырезан из фона, сохранён как img/clipboard.webp):
+https://unsplash.com/photos/a-white-framed-picture  (photo-1651760680066-db9d32bd0357)
+
+Главная, «О нас» (фото для примера):
+https://images.unsplash.com/photo-1686178827149-6d55c72d81df  → img/photo/rabota.jpg
+Команда (стоковые портреты, подписаны «фото для примера»):
+https://images.unsplash.com/photo-1580489944761-15a19d654956  → img/team/brigadir.jpg
+https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e  → img/team/kachestvo.jpg
+https://images.unsplash.com/photo-1500648767791-00dcc994a43e  → img/team/okna.jpg
+https://images.unsplash.com/photo-1791573454554-97062d350ab0  → img/team/dispetcher.jpg
