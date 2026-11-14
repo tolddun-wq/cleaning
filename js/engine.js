@@ -39,6 +39,7 @@ window.CH = (function (D) {
       const raw = localStorage.getItem(KEY);
       if (raw) {
         const s = Object.assign(base, JSON.parse(raw));
+        s.client = {};
         if (parseIso(s.date) < today()) { s.date = base.date; }
         return s;
       }
@@ -46,7 +47,8 @@ window.CH = (function (D) {
     return base;
   }
   function save(s) {
-    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* ничего страшного */ }
+    /* контакты и адрес не храним между визитами: при новом заходе поля пустые */
+    try { localStorage.setItem(KEY, JSON.stringify(Object.assign({}, s, { client: {} }))); } catch (e) { /* ничего страшного */ }
   }
 
   const type = s => D.TYPES.find(t => t.id === s.type) || D.TYPES[0];

@@ -126,11 +126,22 @@
     const city = c.city || 'nn', keys = c.keys || 'home';
     form.querySelector(`input[name=city][value=${city}]`).checked = true;
     form.querySelector(`input[name=keys][value=${keys}]`).checked = true;
+    form.querySelector(`input[name=home][value=${c.home || 'flat'}]`).checked = true;
+    homeKind();
+  }
+  /* частный дом: квартира, подъезд, этаж, домофон и консьерж не нужны */
+  function homeKind() {
+    const house = form.home.value === 'house';
+    form.querySelectorAll('[data-flat]').forEach(el => { el.hidden = house; });
+    form.querySelector('[data-where]').textContent = house ? 'дом' : 'квартиру';
+    form.street.placeholder = house ? 'например, пос. Зелёный, ул. Садовая, 12' : 'например, ул. Ванеева, 34';
+    if (house && form.keys.value === 'concierge') form.querySelector('input[name=keys][value=home]').checked = true;
   }
   function readClient() {
     const fd = new FormData(form);
     const c = {};
     for (const [k, v] of fd.entries()) c[k] = String(v);
+    if (c.home === 'house') ['flat', 'entrance', 'floor', 'intercom'].forEach(k => delete c[k]);
     return c;
   }
   let lastPhone = '';
@@ -152,7 +163,7 @@
     B.set({ client: readClient() });
     drawSteps();
   });
-  form.addEventListener('change', () => { B.set({ client: readClient() }); });
+  form.addEventListener('change', e => { if (e.target.name === 'home') homeKind(); B.set({ client: readClient() }); });
   const MSG = {
     name: 'Напишите, как к вам обращаться — бригадир позвонит накануне.',
     phone: 'Нужен номер из 11 цифр: по нему бригадир сверит наряд накануне.',
@@ -193,7 +204,7 @@
     const c = s.client || {};
     const { hours, people } = r.work;
     const b = brigade(s.date, s.slot);
-    const addr = [(c.city === 'kstovo' ? 'Кстово' : 'Нижний Новгород') + ', ' + (c.street || ''), c.flat && 'кв.' + NB + c.flat, c.entrance && 'подъезд ' + c.entrance, c.floor && 'этаж ' + c.floor, c.intercom && 'домофон ' + c.intercom].filter(Boolean).join(', ');
+    const addr = [(c.city === 'kstovo' ? 'Кстово' : 'Нижний Новгород') + ', ' + (c.street || ''), c.home === 'house' && 'частный дом', c.flat && 'кв.' + NB + c.flat, c.entrance && 'подъезд ' + c.entrance, c.floor && 'этаж ' + c.floor, c.intercom && 'домофон ' + c.intercom].filter(Boolean).join(', ');
     const keys = { home: 'встретят дома', office: 'ключи оставят в офисе на Белинского, 61', concierge: 'ключи у консьержа' }[c.keys || 'home'];
     const house = s.house.map(id => D.HOUSE.find(h => h.id === id).name.toLowerCase()).join(', ');
     const extras = D.EXTRAS.filter(x => s.extras[x.id] && !CH.extraIncluded(x, s)).map(x => x.name.toLowerCase() + (x.count ? ' ×' + s.extras[x.id] : '')).join(', ');

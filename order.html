@@ -17,8 +17,8 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preload" href="fonts/ibm-plex-sans-condensed-700-cyrillic-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/onest-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/fonts.css?v=11">
-<link rel="stylesheet" href="css/site.css?v=11">
+<link rel="stylesheet" href="css/fonts.css?v=12">
+<link rel="stylesheet" href="css/site.css?v=12">
 </head>
 <body>
 <a class="skip" href="#steps">К шагам заказа</a>
@@ -93,23 +93,27 @@
         <p class="pane__lead">Накануне в&nbsp;19:00 бригадир позвонит и&nbsp;сверит наряд. Обязательные графы отмечены звёздочкой.</p>
         <form class="fields" id="client" novalidate autocomplete="on">
           <label class="fld fld--3"><span>Как к&nbsp;вам обращаться <i>*</i></span>
-            <input name="name" autocomplete="given-name" aria-describedby="err-name"><span class="err" id="err-name"></span></label>
+            <input name="name" autocomplete="given-name" placeholder="например, Марина" aria-describedby="err-name"><span class="err" id="err-name"></span></label>
           <label class="fld fld--3"><span>Телефон <i>*</i></span>
             <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" aria-describedby="err-phone"><span class="err" id="err-phone"></span></label>
           <div class="fld-row"><span>Город</span>
             <label class="circ"><input type="radio" name="city" value="nn" checked><span>Нижний Новгород</span></label>
             <label class="circ"><input type="radio" name="city" value="kstovo"><span>Кстово</span></label>
           </div>
+          <div class="fld-row"><span>Жильё</span>
+            <label class="circ"><input type="radio" name="home" value="flat" checked><span>квартира</span></label>
+            <label class="circ"><input type="radio" name="home" value="house"><span>частный дом</span></label>
+          </div>
           <label class="fld"><span>Улица и&nbsp;дом <i>*</i></span>
             <input name="street" autocomplete="street-address" placeholder="например, ул. Ванеева, 34" aria-describedby="err-street"><span class="err" id="err-street"></span></label>
-          <label class="fld fld--1"><span>Квартира</span><input name="flat" inputmode="numeric"></label>
-          <label class="fld fld--1"><span>Подъезд</span><input name="entrance" inputmode="numeric"></label>
-          <label class="fld fld--1"><span>Этаж</span><input name="floor" inputmode="numeric"></label>
-          <label class="fld fld--3"><span>Код домофона</span><input name="intercom"></label>
-          <div class="fld-row"><span>Как попадём в&nbsp;квартиру</span>
+          <label class="fld fld--1" data-flat><span>Квартира</span><input name="flat" inputmode="numeric" placeholder="27"></label>
+          <label class="fld fld--1" data-flat><span>Подъезд</span><input name="entrance" inputmode="numeric" placeholder="2"></label>
+          <label class="fld fld--1" data-flat><span>Этаж</span><input name="floor" inputmode="numeric" placeholder="5"></label>
+          <label class="fld fld--3" data-flat><span>Код домофона</span><input name="intercom" placeholder="27к"></label>
+          <div class="fld-row"><span>Как попадём в&nbsp;<span data-where>квартиру</span></span>
             <label class="circ"><input type="radio" name="keys" value="home" checked><span>встречу дома</span></label>
             <label class="circ"><input type="radio" name="keys" value="office"><span>оставлю ключи в&nbsp;офисе</span></label>
-            <label class="circ"><input type="radio" name="keys" value="concierge"><span>ключи у&nbsp;консьержа</span></label>
+            <label class="circ" data-flat><input type="radio" name="keys" value="concierge"><span>ключи у&nbsp;консьержа</span></label>
           </div>
           <label class="fld"><span>Комментарий для бригады</span><textarea name="comment" rows="3" placeholder="Где парковаться, что не трогать, где лежит пылесос"></textarea></label>
           <p class="fld-note">Сайт пробный: данные остаются только в&nbsp;вашем браузере и&nbsp;никуда не&nbsp;отправляются.</p>
@@ -148,10 +152,10 @@
   </div>
 </footer>
 
-<script src="js/data.js?v=11"></script>
-<script src="js/engine.js?v=11"></script>
-<script src="js/blank.js?v=11"></script>
-<script src="js/ui.js?v=11"></script>
-<script src="js/order.js?v=11"></script>
+<script src="js/data.js?v=12"></script>
+<script src="js/engine.js?v=12"></script>
+<script src="js/blank.js?v=12"></script>
+<script src="js/ui.js?v=12"></script>
+<script src="js/order.js?v=12"></script>
 </body>
 </html>

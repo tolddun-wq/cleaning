@@ -426,6 +426,8 @@ label:has(input:focus-visible) { outline: 2px solid var(--pen); outline-offset: 
   background-image: repeating-linear-gradient(transparent 0 30px, var(--rule-soft) 30px 31px); background-attachment: local; }
 .fld input:focus, .fld textarea:focus { outline: none; border-color: var(--pen); box-shadow: 0 1.5px 0 var(--pen); }
 .fld input[aria-invalid="true"] { border-color: var(--stamp); box-shadow: 0 1.5px 0 var(--stamp); }
+.fld input::placeholder, .fld textarea::placeholder { color: #A9BBB2; opacity: 1; }
+.fld [hidden], .fld-row [hidden], .fld[hidden] { display: none !important; }
 .fld .err { margin: 2px 0 0; font-size: 13.5px; }
 .fld-note { grid-column: span 6; font-size: 13.5px; color: var(--print); margin: 0; }
 .fld-row { grid-column: span 6; }
